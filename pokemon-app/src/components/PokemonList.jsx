@@ -13,9 +13,19 @@ const PokemonList = () => {
 
     if  (loading) return <p>Cargando..</p>
 
+    const pokemonsOrdered = [...list]; //se hace un array con la lista de los pokemones
+
+
+    //ordenando la lista al compararlo por un valor que en este caso es el nombre
+    pokemonsOrdered.sort(function(a,b) {
+        if (a.name > b.name){return 1;}
+        if (a.name < b.name) {return -1;}
+        return 0;
+    })
+
     return(
         <div className="grid">
-            {list.map((pokemon)=> (
+            {pokemonsOrdered.map((pokemon)=> (
                 <PokemonCard key={pokemon.name} url={pokemon.url} />
             ))}
         </div>
